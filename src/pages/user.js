@@ -10,7 +10,7 @@ function User() {
 
     if (!loggedIn) {
         navigate('/')
-        return null
+        return null //
     }
     return (
         <Darkwrapper>

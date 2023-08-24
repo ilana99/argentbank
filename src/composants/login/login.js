@@ -23,7 +23,7 @@ function Signin() {
 
       if (response.data) {
       const token = response.data.body.token;
-      dispatch(loginSuccess({ email, token })); // state
+      dispatch(loginSuccess({ token })); // state
       navigate('/profile');
       }
      

@@ -4,7 +4,7 @@ import usernameReducer, { setUsername } from './features/username/username'
 import modalReducer, { toggleModal } from './features/modal/modal'
 
 import bankApi from './api'
-//import { setupListeners } from '@reduxjs/toolkit/query'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
 const store = configureStore({
     reducer: {
@@ -21,4 +21,4 @@ const store = configureStore({
 export { loginSuccess, logout, setUsername, toggleModal };
 export default store;
 
-//setupListeners(store.dispatch) //query
+setupListeners(store.dispatch) //query
