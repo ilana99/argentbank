@@ -8,21 +8,24 @@ import Footer from './composants/footer/footer'
 import User from './pages/user'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
+import { Provider } from 'react-redux';
+import store from './store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <Router>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/user' element={<User />} />
+        <Route path='/profile' element={<User />} />
         <Route path="*" />
       </Routes>
       <Footer/>
     </Router>
+    </Provider>
   </React.StrictMode>
 );
 
