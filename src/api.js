@@ -22,10 +22,14 @@ export const bankApi = createApi({
             query: (token) => ({
                 url: '/user/profile',
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
             }),
+            prepareHeaders: (headers, { getState }) => {
+                const token = getState().login.token;
+                if (token) {
+                    headers.set('Authorization', `Bearer ${token}`);
+                }
+                return headers;
+            },
         }),
         updateProfile: builder.mutation({
             query: ({ userName, token }) => ({
@@ -35,8 +39,7 @@ export const bankApi = createApi({
                     'Authorization': `Bearer ${token}`
                 },
                 body: { 
-                    userName: userName 
-                },
+                    userName: userName },
 
             }),
         }),

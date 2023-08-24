@@ -16,7 +16,7 @@ function Greeting() {
 
     // const fetchName = async () => { // api
     //     try {
-    //         const response = await userProfileMutation({ token });
+    //         const response = await userProfileMutation();
             
     //         //const userName = response.body.userName;
     //         // if (response) {
@@ -28,6 +28,7 @@ function Greeting() {
     //         console.log('erreur fetchName:', error);
     //     }
     // }
+
     useEffect(() => {
         fetch('http://localhost:3001/api/v1/user/profile', {
           method: 'POST',
