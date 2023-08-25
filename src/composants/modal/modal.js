@@ -3,12 +3,11 @@ import {toggleModal} from '../../features/modal/modal'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { bankApi } from '../../api';
 import { setUsername } from "../../features/username/username";
-import { useState } from 'react'; 
+
 function Modal() {
     const isOpened = useSelector(state => state.modal.isOpened);
     const token = useSelector(state => state.login.token)
     const dispatch = useDispatch();
-    //const [newUsername, setNewUsername] = useState('');
 
     const handleClose = () => {
       dispatch(toggleModal());
@@ -16,21 +15,20 @@ function Modal() {
   
     const [updateProfileMutation] = bankApi.endpoints.updateProfile.useMutation();
 
-    const changeName = async () => {
+    const changeName = async (event) => {
+      event.preventDefault()
         try {
             const newUsername = document.getElementById('username').value;
-
-            const response = await updateProfileMutation({
-              userName: newUsername,
+            const response = await updateProfileMutation({ 
+              token, newUsername
             });
-
-            dispatch(setUsername(newUsername))
+            const username = response.userName;
+            console.log(response)
+            dispatch(setUsername(username))
         } catch (error) {
             console.log('erreur:', error); 
         }
     }
-   
-
 
     return (
       <div className={`modal ${isOpened ? 'open' : ''}`}>
@@ -38,7 +36,7 @@ function Modal() {
           <span className="close" onClick={handleClose}>&times;</span>
             <form>
                 <label htmlFor="username"> Enter your new username: </label>
-                <input type="text" name="username" id="username" value={newUsername} onChange={handleUsernameChange} required />
+                <input type="text" name="username" id="username" required />
                 <button onClick={changeName}>Send</button>
             </form>
         </div>
