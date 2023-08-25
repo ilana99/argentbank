@@ -29,6 +29,10 @@ function Greeting() {
     //     }
     // }
 
+     // useEffect(() => {
+    //     fetchName();
+    // }, []);
+
     useEffect(() => {
         fetch('http://localhost:3001/api/v1/user/profile', {
           method: 'POST',
@@ -44,11 +48,7 @@ function Greeting() {
           })
           .then(data => {
             const username = data.body.userName;
-            if (username === null) {
-                const newUsername = "Test";
-                dispatch(setUsername(newUsername))
-            }
-            
+            dispatch(setUsername(username))
             console.log(data)
           })
           .catch(error => {
@@ -56,10 +56,6 @@ function Greeting() {
           });
       }, []); 
 
-
-    // useEffect(() => {
-    //     fetchName();
-    // }, []);
 
     const openModal = () => {
         dispatch(toggleModal())

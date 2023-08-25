@@ -51,11 +51,9 @@ function Modal() {
           return response.json();
       })
       .then(data => {
-          // Handle success response here
           console.log(data);
       })
       .catch(error => {
-          // Handle error here
           console.error('Fetch error:', error);
       });
   };
