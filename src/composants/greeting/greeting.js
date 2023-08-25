@@ -1,5 +1,5 @@
 import "./greeting.css"
-//import { bankApi } from '../../api';
+import { bankApi } from '../../api';
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import Modal from '../modal/modal'
 import { useEffect } from "react";
