@@ -23,8 +23,8 @@ function Modal() {
               token, newUsername
             });
             const username = response.userName;
-            console.log(response)
             dispatch(setUsername(username))
+            console.log(response)
         } catch (error) {
             console.log('erreur:', error); 
         }
