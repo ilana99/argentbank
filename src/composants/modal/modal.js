@@ -14,21 +14,7 @@ function Modal() {
       dispatch(toggleModal());
     };
   
-    //const [updateProfileMutation] = bankApi.endpoints.updateProfile.useMutation();
-
-    // const changeName = async () => {
-    //     try {
-    //         const newUsername = document.getElementById('username').value;
-
-    //         const response = await updateProfileMutation({
-    //           userName: newUsername,
-    //         });
-
-    //         dispatch(setUsername(newUsername))
-    //     } catch (error) {
-    //         console.log('erreur:', error); 
-    //     }
-    // }
+   
     const handleUsernameChange = (event) => {
       setNewUsername(event.target.value);
   };
