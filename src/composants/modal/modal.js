@@ -18,11 +18,11 @@ function Modal() {
     const changeName = async (event) => {
       event.preventDefault()
         try {
-            const newUsername = document.getElementById('username').value;
+            const username = document.getElementById('username').value;
             const response = await updateProfileMutation({ 
-              token, newUsername
+              token, username
             });
-            const username = response.userName;
+            //const newUsername = response.data.body.userName;
             dispatch(setUsername(username))
             console.log(response)
         } catch (error) {
