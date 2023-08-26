@@ -1,3 +1,4 @@
+import './modal.css'
 import { useDispatch } from 'react-redux';
 import {toggleModal} from '../../features/modal/modal'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
@@ -32,7 +33,7 @@ function Modal() {
     }
 
     return (
-      <div className={`modal ${isOpened ? 'open' : ''}`}>
+      <div className={`modal-${isOpened ? 'open' : ''}`}>
         <div className="modal-content">
           <span className="close" onClick={handleClose}>&times;</span>
             <form>

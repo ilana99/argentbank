@@ -39,11 +39,12 @@ function Greeting() {
     dispatch(toggleModal())
   }
 
+
   return (
     <div className="header">
       {isOpened && <Modal />}
       <h1>Welcome back<br />{username}</h1>
-      <button className="edit-button" onClick={openModal}>Edit Name</button>
+      {isOpened ? "" : <button className="edit-button" onClick={openModal}>Edit Name</button>}
     </div>
   )
 }

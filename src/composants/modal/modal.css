@@ -1,0 +1,45 @@
+.modal-open {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.modal-open .modal-content {
+  background: white;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+}
+.modal-open span {
+  position: relative;
+  left: 150px;
+  top: 15px;
+  font-size: 30px;
+}
+.modal-open form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 10px;
+  width: 80%;
+}
+.modal-open form label {
+  text-align: left;
+}
+.modal-open form input {
+  min-height: 20px;
+  border-radius: 10px;
+  border: 0px;
+  padding: 5px;
+}
+.modal-open form button {
+  min-width: 20%;
+  margin: auto;
+  margin-top: 10px;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}/*# sourceMappingURL=modal.css.map */
