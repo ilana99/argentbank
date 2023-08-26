@@ -30,7 +30,7 @@ export const bankApi = createApi({
           
           updateProfile: builder.mutation({
             query: ({ newUsername, token }) => {
-              // console.log(token); 
+              console.log(newUsername); 
               return {
                 url: '/user/profile',
                 method: 'PUT',
@@ -38,7 +38,7 @@ export const bankApi = createApi({
                   'Authorization': `Bearer ${token}`
                 },
                 body: {
-                  newUsername
+                  userName: newUsername
                 },
               };
             },
