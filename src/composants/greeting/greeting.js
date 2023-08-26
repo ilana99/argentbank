@@ -9,29 +9,9 @@ import { setUsername } from "../../features/username/username";
 
 function Greeting() {
     const token = useSelector(state => state.login.token)
-    //const [userProfileMutation] = bankApi.endpoints.userProfile.useMutation();
     const dispatch = useDispatch();
     const isOpened = useSelector((state) => state.modal.isOpened)
     const username = useSelector((state) => state.profile.username);
-
-    // const fetchName = async () => { // api
-    //     try {
-    //         const response = await userProfileMutation();
-            
-    //         //const userName = response.body.userName;
-    //         // if (response) {
-    //         //     dispatch(setUsername(userName))
-    //         // }
-    //         console.log(response)
-            
-    //     } catch (error) {
-    //         console.log('erreur fetchName:', error);
-    //     }
-    // }
-
-     // useEffect(() => {
-    //     fetchName();
-    // }, []);
 
     useEffect(() => {
         fetch('http://localhost:3001/api/v1/user/profile', {
