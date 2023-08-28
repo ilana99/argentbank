@@ -7,6 +7,7 @@ import bankApi from './api'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 const storedLoggedIn = localStorage.getItem('loggedIn') === 'true';
+const storedToken = localStorage.getItem('token'); 
 
 const store = configureStore({
     reducer: {
@@ -20,13 +21,15 @@ const store = configureStore({
     preloadedState: {
         login: {
             loggedIn: storedLoggedIn,
+            token: storedToken,
         },
     }
 })
 
-store.subscribe(() => {
+store.subscribe(() => { // keep logged in
     const state = store.getState();
     localStorage.setItem('loggedIn', state.login.loggedIn);
+    localStorage.setItem('token', state.login.token); 
 });
 
 setupListeners(store.dispatch) //query

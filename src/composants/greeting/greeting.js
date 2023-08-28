@@ -8,12 +8,12 @@ import { toggleModal } from '../../features/modal/modal'
 import { setUsername } from "../../features/username/username";
 
 function Greeting() {
-
   const token = useSelector((state) => state.login.token)
   const [userProfileMutation] = bankApi.endpoints.userProfile.useMutation();
   const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modal.isOpened)
   const username = useSelector((state) => state.profile.username);
+
 
   const fetchName = async () => { // api
     try {
@@ -21,7 +21,7 @@ function Greeting() {
       const userName = response.data.body.userName;
       if (userName !== null) {
         dispatch(setUsername(userName))
-        console.log(response)
+      //  console.log(response)
       } else {
         const nullUsername = "null";
         dispatch(setUsername(nullUsername))
