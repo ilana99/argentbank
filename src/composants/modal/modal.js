@@ -14,39 +14,8 @@ function Modal() {
       dispatch(toggleModal());
     };
   
-<<<<<<< HEAD
-   
-    const handleUsernameChange = (event) => {
-      setNewUsername(event.target.value);
-  };
-
-    const changeName = () => {
-      fetch('http://localhost:3001/api/v1/user/profile', {
-          method: 'PUT',
-          headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              userName: newUsername
-          })
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log(data);
-      })
-      .catch(error => {
-          console.error('Fetch error:', error);
-      });
-  };
-=======
     const [updateProfileMutation] = bankApi.endpoints.updateProfile.useMutation();
->>>>>>> 2d97c9dfc2fe2a2c5d4d22f531ab7b1084560a59
+
 
     const changeName = async (event) => {
       event.preventDefault()
