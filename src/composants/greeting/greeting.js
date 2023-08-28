@@ -8,39 +8,7 @@ import { toggleModal } from '../../features/modal/modal'
 import { setUsername } from "../../features/username/username";
 
 function Greeting() {
-<<<<<<< HEAD
-    const token = useSelector(state => state.login.token)
-    const dispatch = useDispatch();
-    const isOpened = useSelector((state) => state.modal.isOpened)
-    const username = useSelector((state) => state.profile.username);
 
-    useEffect(() => {
-        fetch('http://localhost:3001/api/v1/user/profile', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            const username = data.body.userName;
-            dispatch(setUsername(username))
-            console.log(data)
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
-          });
-      }, []); 
-
-
-    const openModal = () => {
-        dispatch(toggleModal())
-=======
   const token = useSelector((state) => state.login.token)
   const [userProfileMutation] = bankApi.endpoints.userProfile.useMutation();
   const dispatch = useDispatch();
@@ -61,7 +29,7 @@ function Greeting() {
       
     } catch (error) {
       console.log('erreur fetchName:', error);
->>>>>>> 2d97c9dfc2fe2a2c5d4d22f531ab7b1084560a59
+
     }
   }
 
