@@ -6,6 +6,8 @@ import modalReducer, { toggleModal } from './features/modal/modal'
 import bankApi from './api'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
+const storedLoggedIn = localStorage.getItem('loggedIn') === 'true';
+
 const store = configureStore({
     reducer: {
         login: loginReducer,
@@ -15,10 +17,20 @@ const store = configureStore({
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(bankApi.middleware), //query
-
+    preloadedState: {
+        login: {
+            loggedIn: storedLoggedIn,
+        },
+    }
 })
+
+store.subscribe(() => {
+    const state = store.getState();
+    localStorage.setItem('loggedIn', state.login.loggedIn);
+});
+
+setupListeners(store.dispatch) //query
 
 export { loginSuccess, logout, setUsername, toggleModal };
 export default store;
 
-setupListeners(store.dispatch) //query

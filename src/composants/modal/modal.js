@@ -27,7 +27,7 @@ function Modal() {
             });
             const newUsername = response.data.body.userName;
             dispatch(setUsername(newUsername))
-            //console.log(newUsername)
+            dispatch(toggleModal())
         } catch (error) {
             console.log('erreur:', error); 
         }
