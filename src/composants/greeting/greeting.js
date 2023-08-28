@@ -8,6 +8,7 @@ import { toggleModal } from '../../features/modal/modal'
 import { setUsername } from "../../features/username/username";
 
 function Greeting() {
+<<<<<<< HEAD
     const token = useSelector(state => state.login.token)
     const dispatch = useDispatch();
     const isOpened = useSelector((state) => state.modal.isOpened)
@@ -39,15 +40,47 @@ function Greeting() {
 
     const openModal = () => {
         dispatch(toggleModal())
-    }
+=======
+  const token = useSelector((state) => state.login.token)
+  const [userProfileMutation] = bankApi.endpoints.userProfile.useMutation();
+  const dispatch = useDispatch();
+  const isOpened = useSelector((state) => state.modal.isOpened)
+  const username = useSelector((state) => state.profile.username);
 
-    return (
-        <div className="header">
-            {isOpened && <Modal />}
-            <h1>Welcome back<br />{username}</h1>
-            <button className="edit-button" onClick={openModal}>Edit Name</button>
-        </div>
-    )
+  const fetchName = async () => { // api
+    try {
+      const response = await userProfileMutation({ token });
+      const userName = response.data.body.userName;
+      if (userName !== null) {
+        dispatch(setUsername(userName))
+        console.log(response)
+      } else {
+        const nullUsername = "null";
+        dispatch(setUsername(nullUsername))
+      }
+      
+    } catch (error) {
+      console.log('erreur fetchName:', error);
+>>>>>>> 2d97c9dfc2fe2a2c5d4d22f531ab7b1084560a59
+    }
+  }
+
+  useEffect(() => {
+    fetchName();
+  }, []);
+
+  const openModal = () => {
+    dispatch(toggleModal())
+  }
+
+
+  return (
+    <div className="header">
+      {isOpened && <Modal />}
+      <h1>Welcome back<br />{username}</h1>
+      {isOpened ? "" : <button className="edit-button" onClick={openModal}>Edit Name</button>}
+    </div>
+  )
 }
 
 export default Greeting

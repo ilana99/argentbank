@@ -22,27 +22,28 @@ export const bankApi = createApi({
             query: (token) => ({
                 url: '/user/profile',
                 method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${token.token}`
+                },
             }),
-            prepareHeaders: (headers, { getState }) => {
-                const token = getState().login.token;
-                if (token) {
-                    headers.set('Authorization', `Bearer ${token}`);
-                }
-                return headers;
-            },
-        }),
-        updateProfile: builder.mutation({
-            query: ({ userName, token }) => ({
+          }),
+          
+          updateProfile: builder.mutation({
+            query: ({ newUsername, token }) => {
+              console.log(newUsername); 
+              return {
                 url: '/user/profile',
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                  'Authorization': `Bearer ${token}`
                 },
-                body: { 
-                    userName: userName },
-
-            }),
-        }),
+                body: {
+                  userName: newUsername
+                },
+              };
+            },
+          }),
+          
     }),
 })
 
