@@ -15,9 +15,9 @@ function User() {
     return (
         <Darkwrapper>
              <Greeting />
-             <Transaction balance="10$" state="Current" bank="Test"/>
-             <Transaction balance="10$" state="Current" bank="Test"/>
-             <Transaction balance="10$" state="Current" bank="Test"/>
+             <Transaction balance="10$" state="Current" bank="Argent Bank"/>
+             <Transaction balance="10$" state="Current" bank="Argent Bank"/>
+             <Transaction balance="10$" state="Current" bank="Argent Bank"/>
         </Darkwrapper>
        
     )

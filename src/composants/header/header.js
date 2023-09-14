@@ -3,6 +3,7 @@ import logo from "../../assets/argentBankLogo.png";
 import "./header.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/login/login";
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
   const icon = <FontAwesomeIcon icon={faCircleUser} />
+  const iconLogOut = <FontAwesomeIcon icon={faRightFromBracket} />
   const loggedIn = useSelector(state => state.login.loggedIn)
 
   const dispatch = useDispatch()
@@ -36,7 +38,7 @@ function Header() {
           {icon}
            Tony
          </Link>
-         <button onClick={logoutFunction}> Sign out </button>
+         <button onClick={logoutFunction} className="signout"> {iconLogOut} Sign out </button>
        </>
         ) : (
           <Link to="/login" className="main-nav-item">

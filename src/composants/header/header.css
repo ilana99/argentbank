@@ -4,12 +4,26 @@
   align-items: center;
   padding: 5px 20px;
 }
-.main-nav link {
+.main-nav a {
   font-weight: bold;
   color: #2c3e50;
 }
-.main-nav link.router-link-exact-active {
+.main-nav a svg {
+  padding-right: 2px;
+}
+.main-nav a.router-link-exact-active {
   color: #42b983;
+}
+.main-nav .signout {
+  font-weight: bold;
+  color: #2c3e50;
+  border: none;
+  background: none;
+  font-size: 1rem;
+}
+.main-nav .signout:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .main-nav-item {

@@ -46,12 +46,15 @@
   background-color: #00bc77;
   color: #fff;
 }
-.transaction-button .account {
-  flex-direction: row;
-}
-.transaction-button .account-content-wrapper.cta {
-  flex: 0;
-}
-.transaction-button .transaction-button {
-  width: 200px;
+
+@media (min-width: 720px) {
+  .account {
+    flex-direction: row;
+  }
+  .account-content-wrapper.cta {
+    flex: 0;
+  }
+  .transaction-button {
+    width: 200px;
+  }
 }/*# sourceMappingURL=transaction.css.map */

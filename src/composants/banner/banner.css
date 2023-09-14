@@ -25,22 +25,23 @@
   margin-bottom: 0;
   font-size: 0.9rem;
 }
+
 @media (min-width: 920px) {
-  .hero-content .text .hero {
+  .hero {
     height: 400px;
     background-position: 0% 33%;
   }
-  .hero-content .text .hero-content {
+  .hero-content {
     position: absolute;
     top: 50px;
     right: 50px;
     width: 300px;
     margin: 2rem;
   }
-  .hero-content .text .subtitle {
+  .subtitle {
     font-size: 1.5rem;
   }
-  .hero-content .text .text {
+  .text {
     font-size: 1.2rem;
   }
 }/*# sourceMappingURL=banner.css.map */
