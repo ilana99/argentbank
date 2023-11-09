@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import loginReducer, { loginSuccess, logout } from './features/login/login'
-import usernameReducer, { setUsername } from './features/username/username'
+import usernameReducer, { setUsername, setFirstname, setLastname } from './features/username/username'
 import modalReducer, { toggleModal } from './features/modal/modal'
 
 import bankApi from './api'
@@ -34,6 +34,6 @@ store.subscribe(() => { // keep logged in
 
 setupListeners(store.dispatch) //query
 
-export { loginSuccess, logout, setUsername, toggleModal };
+export { loginSuccess, logout, setUsername, setFirstname, setLastname, toggleModal };
 export default store;
 

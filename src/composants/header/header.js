@@ -8,11 +8,37 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/login/login";
 import { useNavigate } from "react-router-dom";
+import {bankApi} from "../../api";
+import { useEffect } from "react";
+import { setFirstname } from "../../features/username/username";
 
 function Header() {
   const icon = <FontAwesomeIcon icon={faCircleUser} />
   const iconLogOut = <FontAwesomeIcon icon={faRightFromBracket} />
   const loggedIn = useSelector(state => state.login.loggedIn)
+  const token = useSelector(state => state.login.token)
+  const firstName = useSelector((state) => state.profile.firstName);
+
+
+  const [userProfileMutation] = bankApi.endpoints.userProfile.useMutation();
+
+  const fetchProfile = async () => { // api
+    try {
+      const response = await userProfileMutation({ token });
+      const firstName = response.data.body.firstName;
+      if (firstName) {
+        dispatch(setFirstname(firstName))
+      } 
+      //console.log(response.data.body)
+    } catch (error) {
+      console.log('erreur fetchName:', error);
+
+    }
+  }
+
+  useEffect(() => {
+    fetchProfile();
+   }, [])
 
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -36,7 +62,7 @@ function Header() {
          <>
          <Link to='/profile' className="main-nav-item">
           {icon}
-           Tony
+           {firstName}
          </Link>
          <button onClick={logoutFunction} className="signout"> {iconLogOut} Sign out </button>
        </>

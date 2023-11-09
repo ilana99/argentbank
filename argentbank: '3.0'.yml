@@ -1,0 +1,158 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: '1.0.0'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /transactions/{year}/{month}:
+   get:
+      tags: 
+        - User Module
+      summary: See every transaction for a specific month
+      description: See every transaction for a month
+      operationId: getTransactionByMonth
+      parameters: 
+        - in: path
+          name: year
+          description: year of transaction
+          required: true
+          type: integer
+        - in: path
+          name: month
+          description: month of transaction
+          required: true
+          type: integer
+      responses: 
+        '200':
+          description: Monthly transactions retrieved successfully 
+          schema: 
+            $ref: '#/definitions/TransactionsSuccessful'
+        '400':
+          description: failure
+  /transactions/{TransactionId}:
+    get:
+      tags : 
+        - User Module
+      summary: See details of a specific transaction
+      description: see details of a specific transaction
+      operationId: getTransactionDetails
+      parameters: 
+        - in: path
+          name:  TransactionId
+          type: integer
+          description: transaction's id
+          required: true
+      responses:
+        '200':
+          description: Transaction's details retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionDetails'
+    put:
+      tags : 
+        - User Module
+      summary: Modify a transaction's details
+      description: Modify a transaction's details
+      operationId: ModifyTransactionDetails
+      parameters: 
+        - in: path
+          name: TransactionId
+          type: integer
+          description: transaction's id
+          required: true
+        - in: body 
+          name : transaction's details 
+          description: transaction's details 
+          schema:
+            $ref: '#/definitions/TransactionDetailsUpdate'
+      responses:
+        '200':
+          description: transaction's details successfully modified 
+          schema:
+            $ref: '#/definitions/TransactionDetailsUpdate'
+        '400':
+          description: failure
+  /transactions/{TransactionId}/details:
+    delete:
+      tags: 
+        - User Module
+      summary: Delete a transaction's details
+      description: Delete transaction's details
+      operationId: DeleteTransactionDetails
+      parameters: 
+        - in: path 
+          name: TransactionId
+          type: integer
+          description: The transaction's id
+          required: true
+        - in: query 
+          name: detail
+          type: string
+          description: The detail to delete
+          required: true
+        - in: body 
+          name : transaction's details 
+          description: transaction's details 
+          schema:
+            $ref: '#/definitions/TransactionDetailsUpdate'
+      responses:
+          '200':
+            description: transaction's details successfully updated 
+            schema:
+              $ref: '#/definitions/TransactionDetailsUpdate'
+          '400':
+            description: failure
+definitions:
+  TransactionInfo: 
+    properties:
+      id: 
+        type: integer 
+        description: returns a transaction's id 
+      date: 
+        type: string
+        description: transaction's date
+      name: 
+        type: string
+        description: returns a transaction's name
+      amount: 
+        type: integer 
+        description: returns a transaction's amount
+  TransactionsSuccessful: 
+    type: object
+    properties: 
+      month: 
+        type: string
+        description: month of transactions
+      year: 
+        type: string
+        description: year of transactions
+      transactions: 
+        type: array
+        description: list of transactions
+        items:
+          $ref: '#/definitions/TransactionInfo'
+  TransactionDetails:
+    allOf:
+      - $ref: '#/definitions/TransactionInfo'
+      - properties:
+          note: 
+            type: string
+            description: User's added notes
+          transactionType: 
+            type: string
+            description: Transaction type
+          category: 
+            type: string
+            description: Transaction category
+  TransactionDetailsUpdate:
+    type: object
+    properties: 
+        note: 
+            type: string
+            description: User's added notes
+        category: 
+            type: string
+            description: Transaction category
