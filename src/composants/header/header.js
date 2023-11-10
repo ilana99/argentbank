@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logo from "../../assets/argentBankLogo.png";
+import logo from "../../assets/argentBankLogo.webp";
 import "./header.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
@@ -26,10 +26,7 @@ function Header() {
     try {
       const response = await userProfileMutation({ token });
       const firstName = response.data.body.firstName;
-      if (firstName) {
-        dispatch(setFirstname(firstName))
-      } 
-      //console.log(response.data.body)
+      dispatch(setFirstname(firstName))
     } catch (error) {
       console.log('erreur fetchName:', error);
 

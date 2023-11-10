@@ -1,8 +1,8 @@
 import Card from "../card/card"
 import "./cards3.css"
-import iconchat from "../../assets/icon-chat.png"
-import iconmoney from "../../assets/icon-money.png"
-import iconsecurity from "../../assets/icon-security.png"
+import iconchat from "../../assets/icon-chat.webp"
+import iconmoney from "../../assets/icon-money.webp"
+import iconsecurity from "../../assets/icon-security.webp"
 
 function Cards() {
     return(
