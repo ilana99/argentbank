@@ -33,9 +33,15 @@ function Header() {
     }
   }
 
-  useEffect(() => {
-    fetchProfile();
-   }, [])
+  
+
+   
+    useEffect(() => {
+      if (loggedIn) {
+        fetchProfile();
+      }
+     }, [])
+   
 
   const dispatch = useDispatch()
   const navigate = useNavigate();

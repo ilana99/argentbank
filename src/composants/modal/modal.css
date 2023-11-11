@@ -30,8 +30,14 @@
 .modal-open form input {
   min-height: 20px;
   border-radius: 10px;
-  border: 0px;
+  border: 1px solid black;
   padding: 5px;
+}
+.modal-open form input:-moz-read-only {
+  background: whitesmoke;
+}
+.modal-open form input:read-only {
+  background: whitesmoke;
 }
 .modal-open form button {
   min-width: 20%;
@@ -42,4 +48,5 @@
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  margin-right: 5px;
 }/*# sourceMappingURL=modal.css.map */

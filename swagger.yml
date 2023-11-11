@@ -8,8 +8,10 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /transactions/{year}/{month}:
+  /user/transactions/{year}/{month}:
    get:
+      security:
+        - Bearer: []
       tags: 
         - User Module
       summary: See every transaction for a specific month
@@ -32,9 +34,13 @@ paths:
           schema: 
             $ref: '#/definitions/TransactionsSuccessful'
         '400':
-          description: failure
-  /transactions/{TransactionId}:
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions/{TransactionId}:
     get:
+      security:
+        - Bearer: []
       tags : 
         - User Module
       summary: See details of a specific transaction
@@ -51,36 +57,47 @@ paths:
           description: Transaction's details retrieved successfully
           schema:
             $ref: '#/definitions/TransactionDetails'
-    put:
-      tags : 
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions/{TransactionId}/details:
+    patch:
+      security:
+        - Bearer: []
+      tags: 
         - User Module
       summary: Modify a transaction's details
-      description: Modify a transaction's details
+      description: Modify transaction's details
       operationId: ModifyTransactionDetails
       parameters: 
-        - in: path
+        - in: path 
           name: TransactionId
           type: integer
-          description: transaction's id
+          description: The transaction's id
           required: true
-        - in: body 
-          name : transaction's details 
-          description: transaction's details 
-          schema:
-            $ref: '#/definitions/TransactionDetailsUpdate'
+        - in: query 
+          name: detail
+          type: string
+          description: The detail to delete
+          required: true
       responses:
-        '200':
-          description: transaction's details successfully modified 
-          schema:
-            $ref: '#/definitions/TransactionDetailsUpdate'
-        '400':
-          description: failure
-  /transactions/{TransactionId}/details:
+          '200':
+            description: transaction's details successfully updated 
+            schema:
+              type: object
+              additionalProperties: true
+          '400':
+            description: Invalid Fields
+          '500':
+            description: Internal Server Error
     delete:
+      security:
+        - Bearer: []
       tags: 
         - User Module
       summary: Delete a transaction's details
-      description: Delete transaction's details
+      description: Delete a transaction's details
       operationId: DeleteTransactionDetails
       parameters: 
         - in: path 
@@ -93,18 +110,18 @@ paths:
           type: string
           description: The detail to delete
           required: true
-        - in: body 
-          name : transaction's details 
-          description: transaction's details 
-          schema:
-            $ref: '#/definitions/TransactionDetailsUpdate'
       responses:
           '200':
-            description: transaction's details successfully updated 
-            schema:
-              $ref: '#/definitions/TransactionDetailsUpdate'
+            description: Transaction's details successfully deleted 
           '400':
-            description: failure
+            description: Invalid Fields
+          '500':
+            description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 definitions:
   TransactionInfo: 
     properties:
@@ -124,10 +141,10 @@ definitions:
     type: object
     properties: 
       month: 
-        type: string
+        type: integer
         description: month of transactions
       year: 
-        type: string
+        type: integer
         description: year of transactions
       transactions: 
         type: array
@@ -145,14 +162,5 @@ definitions:
             type: string
             description: Transaction type
           category: 
-            type: string
-            description: Transaction category
-  TransactionDetailsUpdate:
-    type: object
-    properties: 
-        note: 
-            type: string
-            description: User's added notes
-        category: 
             type: string
             description: Transaction category
