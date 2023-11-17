@@ -32,9 +32,6 @@ function Header() {
 
     }
   }
-
-  
-
    
     useEffect(() => {
       if (loggedIn) {

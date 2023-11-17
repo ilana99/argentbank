@@ -30,7 +30,6 @@ export const bankApi = createApi({
           
           updateProfile: builder.mutation({
             query: ({ newUsername, token }) => {
-              //console.log(newUsername); 
               return {
                 url: '/user/profile',
                 method: 'PUT',
