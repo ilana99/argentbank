@@ -1,7 +1,7 @@
 {
   "name": "argentbank",
   "version": "0.1.0",
-  "homepage": "https://ilana99.github.io/argentbank",
+  "homepage": "https://ilana99.github.io/argentbank/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
